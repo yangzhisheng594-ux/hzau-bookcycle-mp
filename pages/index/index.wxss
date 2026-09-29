@@ -1,0 +1,151 @@
+page { background: #f6f5f2; color: #2f6b57; }
+.container { padding: 0 24rpx 32rpx; }
+.page-nav { display: flex; align-items: center; justify-content: center; height: calc(104rpx + env(safe-area-inset-top)); padding-top: env(safe-area-inset-top); box-sizing: border-box; }
+.page-nav-title { color: #2f6b57; font-size: 31rpx; font-weight: 750; letter-spacing: 1rpx; }
+.home-hero { position: relative; min-height: 182rpx; margin-top: 8rpx; padding: 30rpx 32rpx 28rpx; border-radius: 26rpx; background: linear-gradient(135deg, #2f6b57 0%, #458066 100%); box-shadow: 0 16rpx 28rpx rgba(47, 107, 87, .16); overflow: hidden; box-sizing: border-box; }
+.home-hero::before { position: absolute; right: -90rpx; bottom: -118rpx; width: 338rpx; height: 338rpx; border: 1rpx solid rgba(255,255,255,.16); border-radius: 50%; background: rgba(255,255,255,.055); content: ''; }
+.home-hero::after { position: absolute; top: 24rpx; right: 64rpx; width: 62rpx; height: 62rpx; border: 1rpx solid rgba(232,194,112,.48); border-radius: 50%; content: ''; }
+.hero-illustration { position: absolute; right: -6rpx; bottom: -8rpx; z-index: 1; width: 222rpx; height: 184rpx; opacity: .98; }
+.hero-eyebrow { position: relative; z-index: 2; color: #e8c270; font-size: 18rpx; font-weight: 750; letter-spacing: 1.6rpx; }
+.hero-content { position: relative; z-index: 2; width: 390rpx; margin-top: 13rpx; }
+.hero-title { color: #fff; font-size: 36rpx; font-weight: 750; letter-spacing: .5rpx; line-height: 1.35; }
+.hero-title text { display: block; }
+.hero-subtitle { margin-top: 11rpx; color: #d8e4da; font-size: 22rpx; letter-spacing: .4rpx; }
+.search-section-wrapper { margin-top: 22rpx; }
+.search-section { display: flex; align-items: center; height: 88rpx; padding-left: 24rpx; border: 1rpx solid #e9e7e2; border-radius: 18rpx; background: #fff; box-shadow: 0 6rpx 16rpx rgba(47, 107, 87, .04); }
+.search-input { flex: 1; height: 88rpx; color: #3d594c; font-size: 27rpx; }
+.input-placeholder { color: #aab5ad; }
+.search-button { display: flex; align-items: center; justify-content: center; width: 94rpx; height: 88rpx; }
+.search-icon { width: 52rpx; height: 52rpx; opacity: 1; }
+.quick-grid { display: flex; align-items: flex-start; margin: 19rpx 4rpx 28rpx; padding: 2rpx 0; background: transparent; }
+.quick-item { position: relative; display: flex; flex: 1; flex-direction: column; align-items: center; min-width: 0; padding: 2rpx 0 1rpx; text-align: center; }
+.quick-item:not(:last-child)::after { position: absolute; top: 16rpx; right: -8rpx; z-index: 1; color: #ef8a65; content: '›'; font-size: 29rpx; font-weight: 600; line-height: 1; }
+.quick-illustration { width: 58rpx; height: 58rpx; }
+.quick-label { width: 100%; margin-top: 2rpx; color: #3e6e59; font-size: 22rpx; font-weight: 700; line-height: 1.25; text-align: center; }
+.section-more-link { padding: 8rpx 0 8rpx 12rpx; margin: -8rpx 0; }
+.course-match-card { position: relative; margin: -6rpx 0 26rpx; padding: 24rpx 22rpx 20rpx; border: 1rpx solid #dce9de; border-radius: 24rpx; background: linear-gradient(135deg, #f8fcf7 0%, #eef7ef 100%); box-shadow: 0 9rpx 22rpx rgba(47, 107, 87, .06); overflow: hidden; }
+.course-match-card::after { position: absolute; right: -32rpx; bottom: -52rpx; width: 160rpx; height: 160rpx; border: 1rpx solid rgba(74,135,108,.13); border-radius: 50%; content: ''; }
+.match-heading-row, .match-title-group, .match-controls, .course-picker-inner, .match-result-caption, .match-book { display: flex; align-items: center; }
+.match-heading-row { position: relative; z-index: 1; justify-content: space-between; }
+.match-title-group { min-width: 0; }
+.match-title { color: #2f6b57; font-size: 30rpx; font-weight: 750; }
+.match-leaf { position: relative; width: 34rpx; height: 28rpx; margin-left: 9rpx; }
+.match-leaf::before { position: absolute; top: 5rpx; left: 15rpx; width: 2rpx; height: 20rpx; border-radius: 2rpx; background: #79a470; content: ''; transform: rotate(-35deg); }
+.match-leaf-one, .match-leaf-two { position: absolute; width: 13rpx; height: 8rpx; border-radius: 13rpx 0 13rpx 0; background: #9fc493; transform: rotate(-30deg); }
+.match-leaf-one { top: 4rpx; left: 3rpx; }
+.match-leaf-two { top: 13rpx; left: 16rpx; background: #e8c270; transform: rotate(30deg); }
+.match-badge { padding: 7rpx 11rpx; border-radius: 13rpx; background: #fff; color: #5b876e; font-size: 19rpx; line-height: 1; box-shadow: 0 3rpx 9rpx rgba(47,107,87,.05); }
+.match-description { position: relative; z-index: 1; margin-top: 10rpx; color: #718b7c; font-size: 21rpx; line-height: 1.55; }
+.match-controls { position: relative; z-index: 1; margin-top: 17rpx; }
+.course-picker { flex: 1; min-width: 0; }
+.course-picker-inner { height: 68rpx; padding: 0 15rpx; border: 1rpx solid #d5e5d7; border-radius: 14rpx; background: rgba(255,255,255,.86); box-sizing: border-box; }
+.picker-prefix { padding-right: 9rpx; color: #91a79a; font-size: 20rpx; }
+.picker-value { overflow: hidden; flex: 1; color: #386d58; font-size: 23rpx; font-weight: 650; text-overflow: ellipsis; white-space: nowrap; }
+.picker-arrow { margin-left: 7rpx; color: #789a84; font-size: 26rpx; line-height: 1; }
+.match-control-gap { width: 32rpx; height: 1rpx; flex: none; }
+.match-button { display: flex; align-items: center; justify-content: center; width: 152rpx; height: 68rpx; margin: 0; border-radius: 14rpx; background: #2f6b57; color: #fff; font-size: 23rpx; font-weight: 700; line-height: 1.2 !important; box-shadow: 0 7rpx 14rpx rgba(47,107,87,.16); }
+.match-result { position: relative; z-index: 1; margin-top: 18rpx; padding-top: 16rpx; border-top: 1rpx dashed #cee0d1; }
+.match-result-caption { color: #56806a; font-size: 21rpx; line-height: 1.35; }
+.result-dot { width: 9rpx; height: 9rpx; margin-right: 8rpx; border-radius: 50%; background: #e76c47; }
+.match-book-list { margin-top: 12rpx; }
+.match-book { min-height: 82rpx; padding: 9rpx 0; }
+.match-cover { width: 58rpx; height: 76rpx; margin-right: 13rpx; border-radius: 9rpx; background: #e4eee5; flex: none; }
+.match-book-copy { display: flex; flex: 1; flex-direction: column; min-width: 0; }
+.match-book-title { overflow: hidden; color: #2f5848; font-size: 24rpx; font-weight: 650; text-overflow: ellipsis; white-space: nowrap; }
+.match-book-meta { margin-top: 7rpx; color: #91a69a; font-size: 19rpx; }
+.match-book-price { margin-left: 12rpx; color: #e95f3d; font-size: 26rpx; font-weight: 750; }
+.course-request-panel { margin-top: 13rpx; padding: 14rpx 15rpx 10rpx; border: 1rpx solid #f0dfb7; border-radius: 16rpx; background: rgba(255,251,239,.92); }
+.course-request-heading, .request-heading-left, .course-request-item { display: flex; align-items: center; }
+.course-request-heading { justify-content: space-between; color: #9a7a38; font-size: 20rpx; }
+.request-heading-left { font-weight: 650; }
+.request-pulse { width: 8rpx; height: 8rpx; margin-right: 8rpx; border-radius: 50%; background: #ef744a; box-shadow: 0 0 0 5rpx rgba(239,116,74,.12); }
+.request-heading-note { color: #b39762; font-size: 18rpx; }
+.course-request-item { min-height: 70rpx; margin-top: 10rpx; padding-top: 10rpx; border-top: 1rpx solid rgba(224,199,135,.48); }
+.request-symbol { display: flex; align-items: center; justify-content: center; width: 39rpx; height: 39rpx; margin-right: 10rpx; border-radius: 11rpx; background: #f7ddb0; color: #aa7842; font-size: 20rpx; font-weight: 750; flex: none; }
+.request-copy { display: flex; flex: 1; flex-direction: column; min-width: 0; }
+.request-title { overflow: hidden; color: #735c37; font-size: 22rpx; font-weight: 650; text-overflow: ellipsis; white-space: nowrap; }
+.request-meta { margin-top: 5rpx; color: #aa9671; font-size: 18rpx; }
+.request-respond { display: flex; align-items: center; justify-content: center; min-width: 106rpx; height: 48rpx; margin-left: 10rpx; padding: 0 10rpx; border-radius: 12rpx; background: #fff; color: #a26f36; font-size: 20rpx; font-weight: 700; box-shadow: 0 4rpx 10rpx rgba(154,122,56,.10); }
+.match-empty { margin-top: 12rpx; color: #9aaea0; font-size: 21rpx; line-height: 1.5; }
+.section { margin-bottom: 24rpx; padding: 26rpx 22rpx; border: 1rpx solid #ebe8e2; border-radius: 24rpx; background: #fff; box-shadow: 0 8rpx 22rpx rgba(47, 107, 87, .035); }
+.section-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20rpx; }
+.section-title { position: relative; padding-left: 16rpx; color: #2f6b57; font-size: 32rpx; font-weight: 750; }
+.section-title::before { position: absolute; top: 7rpx; left: 0; width: 6rpx; height: 29rpx; border-radius: 4rpx; background: #ef653e; content: ''; }
+.section-title-cluster { display: flex; align-items: center; min-width: 0; }
+.section-leaf-sprig { position: relative; width: 40rpx; height: 30rpx; margin-left: 9rpx; flex: none; }
+.section-leaf-sprig::before { position: absolute; top: 5rpx; left: 18rpx; width: 2rpx; height: 23rpx; border-radius: 2rpx; background: #87ae7e; content: ''; transform: rotate(-36deg); transform-origin: bottom; }
+.sprig-leaf { position: absolute; width: 14rpx; height: 8rpx; border-radius: 14rpx 0 14rpx 0; background: #b8d3ab; transform: rotate(-34deg); }
+.leaf-one { top: 3rpx; left: 5rpx; }
+.leaf-two { top: 12rpx; left: 18rpx; background: #d5e5c8; transform: rotate(29deg); }
+.leaf-three { top: 20rpx; left: 5rpx; width: 11rpx; height: 7rpx; background: #e8c270; transform: rotate(-22deg); }
+.section-more { display: flex; align-items: center; height: 38rpx; color: #a4b0a7; font-size: 22rpx; line-height: 1; }
+.scroll-view-horizontal { width: 100%; white-space: nowrap; font-size: 0; }
+.scroll-item-wrapper { display: inline-block; margin-right: 16rpx; vertical-align: top; font-size: 28rpx; }
+.scroll-item-wrapper:last-child { margin-right: 0; }
+.book-card-horizontal { display: flex; flex-direction: column; width: 198rpx; min-height: 336rpx; padding: 12rpx; border-radius: 15rpx; background: #faf9f6; box-sizing: border-box; }
+.book-cover-horizontal { width: 174rpx; height: 214rpx; border-radius: 10rpx; background: #eff3ef; }
+.book-title-horizontal { overflow: hidden; margin-top: 12rpx; color: #2c463b; font-size: 25rpx; font-weight: 650; text-overflow: ellipsis; white-space: nowrap; }
+.book-code-horizontal { margin-top: 7rpx; color: #9aa89e; font-size: 21rpx; }
+.book-price-horizontal { margin-top: auto; padding-top: 8rpx; color: #ed633c; font-size: 29rpx; font-weight: 750; }
+.release-list { margin-top: -4rpx; }
+.release-item { display: flex; align-items: stretch; padding: 20rpx 0; border-bottom: 1rpx solid #f0eeea; }
+.release-item:last-child { padding-bottom: 0; border-bottom: 0; }
+.release-cover { width: 130rpx; height: 170rpx; margin-right: 20rpx; border-radius: 12rpx; background: #eff3ef; flex-shrink: 0; }
+.release-info { display: flex; flex: 1; flex-direction: column; padding: 3rpx 0; }
+.release-title { display: -webkit-box; overflow: hidden; color: #294438; font-size: 29rpx; font-weight: 650; line-height: 1.4; text-overflow: ellipsis; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.release-code { align-self: flex-start; margin-top: 11rpx; padding: 4rpx 10rpx; border-radius: 6rpx; background: #f4f6f2; color: #90a095; font-size: 21rpx; }
+.release-price-line { margin-top: auto; }
+.current-price { color: #ed633c; font-size: 32rpx; font-weight: 750; }
+.empty-inline, .empty-state { padding: 40rpx 0; color: #9daaa1; font-size: 25rpx; text-align: center; }
+.retry-state { color: #ed633c; }
+/* 把真实报错原因显示在页面上，方便截图定位问题 */
+.load-error-detail { margin-top: 12rpx; padding: 0 32rpx; color: #b0b8b2; font-size: 21rpx; line-height: 1.5; word-break: break-all; }
+
+/* ---------------- 轮播（运营位 + 购买说明） ---------------- */
+.banner-carousel { overflow: hidden; }
+.banner-track { display: flex; width: 100%; transition: transform .48s cubic-bezier(.4, 0, .2, 1); }
+.banner-slide { position: relative; flex: none; width: 100%; box-sizing: border-box; }
+.banner-image { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 0; width: 100%; height: 100%; opacity: .34; }
+.banner-slide .hero-eyebrow,
+.banner-slide .hero-title,
+.banner-slide .hero-subtitle { position: relative; z-index: 2; }
+.banner-slide .hero-eyebrow { display: block; }
+.banner-dots { position: relative; z-index: 3; display: flex; align-items: center; justify-content: center; margin-top: 20rpx; }
+.banner-dot { width: 12rpx; height: 6rpx; margin: 0 5rpx; border-radius: 4rpx; background: rgba(255, 255, 255, .42); transition: all .3s; }
+.banner-dot.active { width: 30rpx; background: #e8c270; }
+
+/* ---------------- 核心三入口 ---------------- */
+.entry-grid { display: flex; margin: 22rpx 0 4rpx; }
+.entry-item { display: flex; flex: 1; flex-direction: column; align-items: center; min-width: 0; margin-right: 16rpx; padding: 24rpx 10rpx 20rpx; border-radius: 22rpx; box-shadow: 0 8rpx 20rpx rgba(47, 107, 87, .07); }
+.entry-item:last-child { margin-right: 0; }
+.entry-icon { font-size: 44rpx; line-height: 1; }
+.entry-label { margin-top: 13rpx; font-size: 26rpx; font-weight: 750; line-height: 1.2; }
+.entry-desc { margin-top: 7rpx; font-size: 18rpx; line-height: 1.3; opacity: .78; }
+.entry-sell { background: linear-gradient(140deg, #eef7ef 0%, #dcecdd 100%); }
+.entry-sell .entry-label { color: #2f6b57; }
+.entry-sell .entry-desc { color: #6e8c7b; }
+.entry-buy { background: linear-gradient(140deg, #fdf6e8 0%, #f7ead0 100%); }
+.entry-buy .entry-label { color: #9a7431; }
+.entry-buy .entry-desc { color: #b09363; }
+.entry-want { background: linear-gradient(140deg, #fdf0ea 0%, #f8e0d4 100%); }
+.entry-want .entry-label { color: #b1543a; }
+.entry-want .entry-desc { color: #c08170; }
+
+/* ---------------- 购买说明弹窗 ---------------- */
+.guide-modal-mask { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 999; display: flex; align-items: center; justify-content: center; padding: 0 44rpx; background: rgba(28, 42, 35, .48); box-sizing: border-box; }
+.guide-modal { width: 100%; padding: 34rpx 30rpx 28rpx; border-radius: 26rpx; background: #fff; box-shadow: 0 24rpx 60rpx rgba(24, 46, 36, .22); box-sizing: border-box; }
+.guide-modal-title { color: #2f6b57; font-size: 33rpx; font-weight: 750; text-align: center; }
+.guide-steps { margin-top: 24rpx; }
+.guide-step { display: flex; align-items: flex-start; margin-bottom: 15rpx; }
+.guide-step-num { display: flex; align-items: center; justify-content: center; width: 34rpx; height: 34rpx; margin-right: 14rpx; border-radius: 50%; background: #eef7ef; color: #2f6b57; font-size: 20rpx; font-weight: 750; flex: none; }
+.guide-step-text { flex: 1; color: #3d594c; font-size: 25rpx; line-height: 1.45; }
+.guide-notes { margin-top: 22rpx; padding: 18rpx 18rpx 12rpx; border-radius: 16rpx; background: #faf9f6; }
+.guide-note { margin-bottom: 9rpx; color: #83998b; font-size: 21rpx; line-height: 1.45; }
+.guide-close { height: 84rpx; margin-top: 24rpx; border-radius: 16rpx; background: #2f6b57; color: #fff; font-size: 28rpx; font-weight: 700; line-height: 84rpx !important; }
+.guide-close::after { border: none; }
+
+/* ---------------- 荐书按钮行 ---------------- */
+.match-actions { position: relative; z-index: 1; display: flex; justify-content: flex-end; margin-top: 16rpx; }
+.match-actions .match-button { width: 200rpx; }
+.match-button::after { border: none; }
+

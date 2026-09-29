@@ -1,0 +1,25 @@
+page { background: #f6f5f2; }
+.container { padding: 0 24rpx calc(130rpx + env(safe-area-inset-bottom)); }
+.page-nav { position: relative; display: flex; align-items: center; justify-content: center; height: calc(104rpx + env(safe-area-inset-top)); padding-top: env(safe-area-inset-top); box-sizing: border-box; }
+.nav-title { color: #2f6b57; font-size: 31rpx; font-weight: 750; }
+.nav-back { position: absolute; left: 0; top: calc(26rpx + env(safe-area-inset-top)); display: flex; align-items: center; justify-content: center; width: 52rpx; height: 52rpx; border: 1rpx solid #dfe9e1; border-radius: 14rpx; background: #fff; color: #2c463b; font-size: 48rpx; font-weight: 300; line-height: 46rpx; box-sizing: border-box; }
+.section, .trade-note { padding: 24rpx 22rpx; border: 1rpx solid #ebe8e2; border-radius: 22rpx; background: #fff; box-shadow: 0 8rpx 20rpx rgba(47, 107, 87,.03); }
+.section-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 17rpx; }
+.section-title { position: relative; padding-left: 15rpx; color: #2f6b57; font-size: 30rpx; font-weight: 750; }
+.section-title::before { position: absolute; top: 6rpx; left: 0; width: 6rpx; height: 27rpx; border-radius: 4rpx; background: #ef653e; content: ''; }
+.section-tip { padding: 5rpx 10rpx; border-radius: 6rpx; background: #edf6ef; color: #5a856f; font-size: 20rpx; }
+.order-item { display: flex; align-items: center; padding: 18rpx 0 4rpx; border-top: 1rpx solid #f0eeea; }
+.item-cover { width: 116rpx; height: 150rpx; margin-right: 17rpx; border-radius: 11rpx; background: #eff3ef; flex-shrink: 0; }
+.placeholder-block { background: #eff3ef; }
+.item-details { display: flex; flex: 1; flex-direction: column; min-width: 0; align-self: stretch; padding: 4rpx 0; }
+.item-title { display: -webkit-box; overflow: hidden; color: #294438; font-size: 28rpx; font-weight: 650; line-height: 1.42; text-overflow: ellipsis; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.item-code { align-self: flex-start; margin-top: 10rpx; padding: 4rpx 9rpx; border-radius: 6rpx; background: #f3f5f1; color: #8f9f94; font-size: 20rpx; }
+.item-quantity { margin-top: auto; color: #809287; font-size: 21rpx; }
+.item-price { align-self: flex-start; margin-left: 12rpx; color: #ed633c; font-size: 29rpx; font-weight: 750; }
+.trade-note { margin-top: 18rpx; background: #f0f6fa; border-color: #e0ebf1; box-shadow: none; color: #63758b; font-size: 23rpx; line-height: 1.65; }
+.trade-note-title { margin-bottom: 7rpx; color: #3d725d; font-size: 25rpx; font-weight: 700; }
+.bottom-checkout-bar { position: fixed; right: 0; bottom: 0; left: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; height: 108rpx; padding: 0 24rpx; padding-bottom: env(safe-area-inset-bottom); border-top: 1rpx solid #e8e5df; background: rgba(255,255,255,.98); box-shadow: 0 -7rpx 18rpx rgba(47, 107, 87,.04); box-sizing: border-box; }
+.total-amount-display { display: flex; align-items: baseline; color: #6c7787; font-size: 24rpx; }
+.amount-value { margin-left: 12rpx; color: #ed633c; font-size: 36rpx; font-weight: 750; }
+.pay-button { display: flex; align-items: center; justify-content: center; width: 212rpx; height: 74rpx; margin: 0; border-radius: 16rpx; background: #2f6b57; color: #fff; font-size: 27rpx; font-weight: 700; line-height: 74rpx; box-shadow: 0 7rpx 14rpx rgba(47, 107, 87,.16); }
+.pay-button[disabled] { background: #d9dde2; box-shadow: none; }

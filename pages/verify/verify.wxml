@@ -1,0 +1,56 @@
+<view class="container">
+  <view class="page-nav">
+    <view class="nav-back" bindtap="goBack" wx:if="{{false}}"></view>
+    <text class="page-nav-title">身份认证</text>
+  </view>
+
+  <!-- 状态卡 -->
+  <view class="status-card status-{{statusTone}}">
+    <view class="status-badge">{{statusTitle}}</view>
+    <view class="status-desc">{{statusDesc}}</view>
+    <view class="status-reason" wx:if="{{status === 'rejected' && rejectReason}}">原因：{{rejectReason}}</view>
+  </view>
+
+  <!-- 已通过：无需再传材料 -->
+  <view class="done-block" wx:if="{{status === 'approved'}}">
+    <view class="done-icon">✓</view>
+    <view class="done-text">你已完成身份认证</view>
+    <button class="primary-btn" bindtap="goPublish">去发布书籍</button>
+  </view>
+
+  <block wx:else>
+    <!-- 材料上传 -->
+    <view class="section">
+      <view class="section-title">上传认证材料</view>
+      <view class="section-tip">请上传能证明华农在校身份的截图：学生证内页、校园卡、或教务系统「我的信息」页面。截图仅管理员可见。</view>
+
+      <view class="proof-box" wx:if="{{!proofImage}}" bindtap="chooseProof">
+        <view class="proof-plus">＋</view>
+        <view class="proof-hint">点击上传截图</view>
+      </view>
+
+      <view class="proof-preview" wx:else>
+        <image class="proof-image" src="{{proofImage}}" mode="aspectFit" bindtap="previewProof"></image>
+        <view class="proof-actions">
+          <view class="proof-action" bindtap="previewProof">查看大图</view>
+          <view class="proof-action danger" bindtap="removeProof" wx:if="{{status !== 'pending'}}">删除重传</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 提交 -->
+    <view class="submit-area" wx:if="{{status !== 'pending'}}">
+      <button class="primary-btn {{localProofPath ? '' : 'btn-disabled'}}" bindtap="submit" disabled="{{submitting}}">
+        {{submitting ? '提交中…' : '提交认证'}}
+      </button>
+    </view>
+
+    <view class="pending-tip" wx:else>材料已提交，请耐心等待管理员审核</view>
+  </block>
+
+  <!-- 联系管理员 -->
+  <view class="contact-row" wx:if="{{hasContact}}">
+    <text class="contact-label">认证遇到问题？</text>
+    <text class="contact-action" bindtap="copyWechat">复制管理员微信</text>
+  </view>
+</view>

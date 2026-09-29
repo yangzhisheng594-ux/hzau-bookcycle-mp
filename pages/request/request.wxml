@@ -1,0 +1,66 @@
+<!--pages/request/request.wxml-->
+<view class="container">
+  <view class="page-nav"><text class="page-nav-title">我的求购</text></view>
+  <!-- 我的求购列表区域 -->
+  <view class="section request-list-section">
+    <view class="section-title-cluster"><view class="section-title">正在寻找的书</view><view class="section-leaf-sprig"><view class="sprig-leaf leaf-one"></view><view class="sprig-leaf leaf-two"></view><view class="sprig-leaf leaf-three"></view></view></view>
+
+    <!-- 未登录提示 -->
+    <view class="login-prompt-container" wx:if="{{!isLoggedIn && !isLoadingRequests}}"> <!-- 使用更通用的类名 -->
+      <text class="login-prompt-text">请先登录查看您发布的求购信息</text> <!-- !!! 修改后的提示文字 !!! -->
+      <button class="login-prompt-button" bindtap="navigateToLogin">去登录</button> <!-- 新增登录按钮 -->
+    </view>
+
+    <!-- 已登录，但列表为空 -->
+    <view class="empty-list" wx:elif="{{isLoggedIn && myRequests.length === 0 && !isLoadingRequests}}">
+      <view class="empty-icon placeholder-block"></view> <!-- 假设使用CSS占位 -->
+      <text>您还没有发布任何求购信息</text>
+      <button class="publish-guidance-button" bindtap="navigateToPublishNewRequest">去发布求购</button>
+    </view>
+
+    <!-- 已登录，且有数据 -->
+    <view class="book-list" wx:elif="{{isLoggedIn && myRequests.length > 0}}">
+      <view class="book-item seeking-item" wx:for="{{myRequests}}" wx:key="id">
+        <image class="book-cover" src="{{item.coverUrl || ''}}" mode="aspectFill" wx:if="{{item.coverUrl}}"></image>
+        <view class="book-cover placeholder-block" wx:else></view>
+
+        <view class="book-info">
+          <view class="book-name">{{item.title}}</view>
+          <view class="book-detail-line">
+            <text class="book-code" wx:if="{{item.author}}">作者: {{item.author}}</text>
+            <text class="book-code" wx:if="{{item.courseCode}}">课程代码: {{item.courseCode}}</text>
+          </view>
+          <view class="book-tag-line" wx:if="{{item.major || item.grade}}">
+            <text class="book-tag" wx:if="{{item.major}}">{{item.major}}</text>
+            <text class="book-tag tag-grade" wx:if="{{item.grade}}">{{item.grade}}</text>
+          </view>
+          <view class="book-price seeking-price">
+            期望:
+            <text wx:if="{{item.seekingPriceMin && item.seekingPriceMax}}">¥{{item.seekingPriceMin}} - {{item.seekingPriceMax}}</text>
+            <text wx:elif="{{item.seekingPriceMin}}">¥{{item.seekingPriceMin}} 起</text>
+            <text wx:elif="{{item.seekingPriceMax}}">最高 ¥{{item.seekingPriceMax}}</text>
+            <text wx:else>面议</text>
+          </view>
+          <view class="seeking-description" wx:if="{{item.description}}">{{item.description}}</view>
+        </view>
+        <button class="manage-button" size="mini" bindtap="manageRequest" data-id="{{item.id}}"><text class="button-label">管理</text></button>
+      </view>
+    </view>
+
+    <!-- 加载中提示 -->
+    <view class="loading-placeholder" wx:if="{{isLoadingRequests}}">
+        <text>正在加载您的求购...</text>
+    </view>
+
+    <!-- 加载更多提示 -->
+    <view class="list-footer-tip" wx:if="{{isLoggedIn && myRequests.length > 0 && !isLoadingRequests}}">
+        <view class="load-more-text" wx:if="{{hasMoreRequests}}" bindtap="loadMoreRequests">点击加载更多</view>
+        <view class="no-more-text" wx:else>已经到底啦~</view>
+    </view>
+  </view>
+
+  <!-- 底部发布按钮 -->
+  <view class="publish-button-fixed">
+    <button class="publish-button" bindtap="navigateToPublishNewRequest">发布求购需求</button>
+  </view>
+</view>

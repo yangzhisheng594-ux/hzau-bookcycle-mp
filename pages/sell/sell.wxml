@@ -1,0 +1,77 @@
+<!--pages/sell/sell.wxml-->
+<view class="container">
+  <view class="page-nav"><text class="page-nav-title">华农书循环</text></view>
+  <!-- 待售书单区域 -->
+  <view class="section selling-list-section">
+    <view class="section-title-row">
+      <view class="section-title-cluster"><view class="section-title">我的在售</view><view class="section-leaf-sprig"><view class="sprig-leaf leaf-one"></view><view class="sprig-leaf leaf-two"></view><view class="sprig-leaf leaf-three"></view></view></view>
+      <view class="sold-orders-link" bindtap="navigateToSoldOrders">售出订单  ›</view>
+    </view>
+    <!-- 新增：如果未登录，显示提示 -->
+    <view class="login-prompt" wx:if="{{!isLoggedIn && sellingBooks.length === 0}}">
+      <text>请先登录查看您发布的书籍</text>
+      <button class="publish-guidance-button" bindtap="navigateToLogin">去登录</button>
+    </view>
+
+    <view class="book-list" wx:if="{{isLoggedIn && sellingBooks.length > 0}}">
+      <view class="book-item" wx:for="{{sellingBooks}}" wx:key="id">
+        <image class="book-cover" wx:if="{{item.coverUrl}}" src="{{item.coverUrl}}" mode="aspectFill"></image>
+        <view class="book-cover book-cover-placeholder" wx:else>暂无封面</view>
+        <view class="book-info">
+          <view class="book-name">{{item.title}}</view>
+          <view class="book-tag-line" wx:if="{{item.major || item.grade}}">
+            <text class="book-tag" wx:if="{{item.major}}">{{item.major}}</text>
+            <text class="book-tag tag-grade" wx:if="{{item.grade}}">{{item.grade}}</text>
+          </view>
+          <view class="book-detail-line">
+            <text class="book-code">课程代码: {{item.courseCode || 'N/A'}}</text>
+          </view>
+          <view class="book-price">出售价格: ¥{{item.price}}</view>
+        </view>
+        <button class="manage-button" size="mini" bindtap="manageBook" data-id="{{item.id}}"><text class="button-label">管理</text></button>
+      </view>
+    </view>
+    <view class="empty-list" wx:if="{{isLoggedIn && sellingBooks.length === 0 && !isLoadingSelling}}">
+      <view class="empty-icon">暂无书籍</view>
+      <text>您还没有发布任何书籍</text>
+      <button class="publish-guidance-button" bindtap="navigateToPublishNew">去发布一本</button>
+    </view>
+    <!-- 加载更多和没有更多提示 -->
+    <view class="list-footer-tip" wx:if="{{isLoggedIn && sellingBooks.length > 0}}">
+        <view class="load-more-text" wx:if="{{isLoadingSelling && hasMoreSelling}}">正在加载更多...</view>
+        <view class="load-more-text" wx:if="{{!isLoadingSelling && hasMoreSelling && sellingBooks.length > 0}}" bindtap="loadMoreSelling">点击加载更多</view>
+        <view class="no-more-text" wx:if="{{!hasMoreSelling && sellingBooks.length > 0}}">已经到底啦~</view>
+    </view>
+  </view>
+
+  <!-- 最近求购区域 (暂时保留你的示例逻辑) -->
+  <view class="section seeking-list-section">
+    <view class="section-title-cluster"><view class="section-title">同学正在找</view><view class="section-leaf-sprig"><view class="sprig-leaf leaf-one"></view><view class="sprig-leaf leaf-two"></view><view class="sprig-leaf leaf-three"></view></view></view>
+    <view class="book-list" wx:if="{{seekingBooks.length > 0}}">
+      <view class="book-item" wx:for="{{seekingBooks}}" wx:key="id">
+        <image class="book-cover" wx:if="{{item.coverUrl}}" src="{{item.coverUrl}}" mode="aspectFill"></image>
+        <view class="book-cover book-cover-placeholder" wx:else>暂无封面</view>
+        <view class="book-info">
+          <view class="book-name">{{item.title}}</view>
+          <view class="book-tag-line" wx:if="{{item.major || item.grade}}">
+            <text class="book-tag" wx:if="{{item.major}}">{{item.major}}</text>
+            <text class="book-tag tag-grade" wx:if="{{item.grade}}">{{item.grade}}</text>
+          </view>
+          <view class="book-detail-line"><text class="book-code">课程代码: {{item.courseCode}}</text></view>
+          <view class="book-price seeking-price">求购价格: ¥{{item.seekingPrice}}</view>
+        </view>
+        <button class="manage-button respond-button" size="mini" bindtap="respondToSeek" data-id="{{item.id}}"><text class="button-label">我有此书</text></button>
+      </view>
+    </view>
+    <view class="empty-list" wx:else>
+        <view class="empty-icon">暂无求购</view>
+      <text>暂无求购信息</text>
+    </view>
+    <!-- ... 求购的加载更多逻辑 ... -->
+  </view>
+
+  <!-- 底部发布按钮 -->
+  <view class="publish-button-fixed">
+    <button class="publish-button" bindtap="navigateToPublishNew">发布一本闲置书</button>
+  </view>
+</view>

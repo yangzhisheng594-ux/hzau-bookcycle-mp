@@ -1,0 +1,16 @@
+<view class="page-wrap">
+  <view class="page-nav"><view class="nav-back" bindtap="goBack">‹</view><text class="nav-title">{{pageTitle}}</text></view>
+  <view class="search-bar"><input value="{{keyword}}" placeholder="输入书名、作者或课程编号" confirm-type="search" bindinput="onKeywordInput" bindconfirm="search" /><view class="search-action" bindtap="search">搜索</view></view>
+  <view class="result-count" wx:if="{{hasSearched && !isLoading}}">为你找到 {{total}} 本相关书籍</view>
+  <view class="book-list" wx:if="{{books.length}}">
+    <view class="book-card" wx:for="{{books}}" wx:key="id" data-id="{{item.id}}" bindtap="openDetail">
+      <image class="cover" wx:if="{{item.coverUrl}}" src="{{item.coverUrl}}" mode="aspectFill" />
+      <view class="cover placeholder" wx:else>暂无封面</view>
+      <view class="book-info"><view class="title">{{item.title}}</view><view class="meta" wx:if="{{item.author}}">{{item.author}}</view><view class="course" wx:if="{{item.courseCode}}">{{item.courseCode}}</view><view class="price">¥{{item.price}}</view></view>
+    </view>
+  </view>
+  <view class="status" wx:if="{{isLoading}}">正在寻找好书…</view>
+  <view class="status" wx:elif="{{hasSearched && books.length === 0}}">没有找到相关书籍</view>
+  <view class="status retry" wx:if="{{loadFailed}}" bindtap="search">加载失败，点击重试</view>
+  <view class="footer" wx:if="{{hasMore && !isLoading}}" bindtap="loadMore">加载更多</view>
+</view>

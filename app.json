@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/sell/sell",
+    "pages/request/request",
+    "pages/cart/cart",
+    "pages/profile/profile",
+    "pages/bookDetail/bookDetail",
+    "pages/publish/publish",
+    "pages/publishRequest/publishRequest",
+    "pages/checkout/checkout",
+    "pages/editProfile/editProfile",
+    "pages/orderList/orderList",
+    "pages/search/search",
+    "pages/soldOrders/soldOrders",
+    "pages/verify/verify"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "华农书循环",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#7d9485",
+    "selectedColor": "#2f7a63",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "images/tabbar/home_illustrated_large_normal.png",
+        "selectedIconPath": "images/tabbar/home_illustrated_large_selected.png"
+      },
+      {
+        "pagePath": "pages/sell/sell",
+        "text": "卖书",
+        "iconPath": "images/tabbar/sell_illustrated_large_normal.png",
+        "selectedIconPath": "images/tabbar/sell_illustrated_large_selected.png"
+      },
+      {
+        "pagePath": "pages/request/request",
+        "text": "求购",
+        "iconPath": "images/tabbar/request_illustrated_large_normal.png",
+        "selectedIconPath": "images/tabbar/request_illustrated_large_selected.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "images/tabbar/cart_illustrated_large_normal.png",
+        "selectedIconPath": "images/tabbar/cart_illustrated_large_selected.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/tabbar/profile_illustrated_large_normal.png",
+        "selectedIconPath": "images/tabbar/profile_illustrated_large_selected.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

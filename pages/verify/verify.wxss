@@ -1,0 +1,44 @@
+/* pages/verify/verify.wxss */
+.container { min-height: 100vh; background: #f5f7f5; padding-bottom: 60rpx; }
+
+.status-card { margin: 24rpx; padding: 36rpx 32rpx; border-radius: 20rpx; background: #fff; box-shadow: 0 4rpx 16rpx rgba(47, 122, 99, .06); }
+.status-badge { display: inline-block; padding: 8rpx 22rpx; border-radius: 999rpx; font-size: 26rpx; font-weight: 700; }
+.status-desc { margin-top: 20rpx; color: #5c6b62; font-size: 26rpx; line-height: 1.6; }
+.status-reason { margin-top: 14rpx; padding: 14rpx 18rpx; border-radius: 12rpx; background: #fdecea; color: #c0392b; font-size: 24rpx; line-height: 1.5; }
+
+.status-pending .status-badge { background: #fdf6e8; color: #9a7431; }
+.status-ok .status-badge { background: #e8f5ec; color: #2f7a63; }
+.status-bad .status-badge { background: #fdecea; color: #c0392b; }
+
+/* 已认证完成态 */
+.done-block { margin: 40rpx 24rpx; padding: 60rpx 32rpx; border-radius: 20rpx; background: #fff; text-align: center; }
+.done-icon { width: 110rpx; height: 110rpx; margin: 0 auto 24rpx; border-radius: 50%; background: #e8f5ec; color: #2f7a63; font-size: 60rpx; line-height: 110rpx; font-weight: 700; }
+.done-text { margin-bottom: 40rpx; color: #2f7a63; font-size: 30rpx; font-weight: 700; }
+
+/* 材料区 */
+.section { margin: 24rpx; padding: 32rpx; border-radius: 20rpx; background: #fff; }
+.section-title { font-size: 30rpx; font-weight: 700; color: #26332c; }
+.section-tip { margin-top: 14rpx; color: #8b978f; font-size: 24rpx; line-height: 1.65; }
+
+.proof-box { margin-top: 28rpx; padding: 70rpx 0; border: 2rpx dashed #b6ddc5; border-radius: 16rpx; background: #f7fbf8; text-align: center; }
+.proof-plus { color: #2f7a63; font-size: 68rpx; line-height: 1; }
+.proof-hint { margin-top: 14rpx; color: #7d9485; font-size: 26rpx; }
+
+.proof-preview { margin-top: 28rpx; }
+.proof-image { width: 100%; height: 460rpx; border-radius: 16rpx; background: #eef2ef; }
+.proof-actions { display: flex; margin-top: 18rpx; }
+.proof-action { flex: 1; padding: 18rpx 0; border-radius: 12rpx; background: #f2f6f3; color: #2f7a63; font-size: 26rpx; text-align: center; }
+.proof-action + .proof-action { margin-left: 18rpx; }
+.proof-action.danger { background: #fdecea; color: #c0392b; }
+
+/* 提交 */
+.submit-area { margin: 36rpx 24rpx 0; }
+.primary-btn { width: 100%; height: 92rpx; line-height: 92rpx; border-radius: 999rpx; border: none; background: #2f7a63; color: #fff; font-size: 31rpx; font-weight: 700; }
+.primary-btn::after { border: none; }
+.primary-btn.btn-disabled { background: #c3d4ca; }
+.pending-tip { margin: 36rpx 24rpx 0; padding: 30rpx; border-radius: 16rpx; background: #fdf6e8; color: #9a7431; font-size: 26rpx; text-align: center; }
+
+/* 联系管理员 */
+.contact-row { margin: 44rpx 24rpx 0; text-align: center; font-size: 25rpx; }
+.contact-label { color: #8b978f; }
+.contact-action { margin-left: 12rpx; color: #2f7a63; font-weight: 700; }

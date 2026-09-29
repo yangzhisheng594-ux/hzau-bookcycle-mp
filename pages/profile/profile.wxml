@@ -1,0 +1,46 @@
+<!-- pages/profile/profile.wxml -->
+<view class="container">
+  <view class="page-nav"><text class="page-nav-title">个人中心</text></view>
+  <view class="profile-header">
+    <image class="avatar" src="{{userInfo.avatarUrl || userInfo.avatar_url || '/images/demo-avatar.png'}}" mode="aspectFill"></image>
+    <view class="profile-copy">
+      <text class="username">{{userInfo.nickName || userInfo.nick_name || '微信用户'}}</text>
+      <text class="member-note">校园二手书循环计划</text>
+    </view>
+    <view wx:if="{{isLoggedIn}}" class="profile-action" bindtap="navigateToEditProfile"><text>编辑资料</text><text class="action-arrow">›</text></view>
+    <view wx:else class="profile-action" bindtap="handleLoginTap"><text>登录</text><text class="action-arrow">›</text></view>
+  </view>
+
+  <!-- 身份认证入口：发布/求购的前置门槛，未通过时常驻显示，通过后收成一行小字 -->
+  <view class="verify-card verify-{{verifyTone}}" wx:if="{{isLoggedIn}}" bindtap="navigateToVerify">
+    <view class="verify-main">
+      <text class="verify-title">身份认证</text>
+      <text class="verify-status">{{verifyTitle}}</text>
+    </view>
+    <view class="verify-arrow">›</view>
+  </view>
+  <view class="order-section">
+    <view class="section-header" bindtap="navigateToOrderList" data-status="all"><text class="section-title">我的订单</text><view class="view-all-orders"><text>查看全部订单</text></view></view>
+    <view class="order-status-tabs">
+      <view class="tab-item" bindtap="navigateToOrderList" data-status="pendingPayment"><view class="tab-container payment"><image class="status-icon" src="/images/order-status/payment.png" mode="aspectFit"></image><text class="tab-label">待付款</text><text class="tab-count" wx:if="{{orderCounts.pendingPayment}}">{{orderCounts.pendingPayment}}</text></view></view>
+      <view class="tab-item" bindtap="navigateToOrderList" data-status="pendingShipment"><view class="tab-container shipment"><image class="status-icon" src="/images/order-status/handoff.png" mode="aspectFit"></image><text class="tab-label">待面交</text><text class="tab-count" wx:if="{{orderCounts.pendingShipment}}">{{orderCounts.pendingShipment}}</text></view></view>
+      <view class="tab-item" bindtap="navigateToOrderList" data-status="pendingReceipt"><view class="tab-container receipt"><image class="status-icon" src="/images/order-status/inspect.png" mode="aspectFit"></image><text class="tab-label">待收书</text><text class="tab-count" wx:if="{{orderCounts.pendingReceipt}}">{{orderCounts.pendingReceipt}}</text></view></view>
+      <view class="tab-item" bindtap="navigateToOrderList" data-status="afterSales"><view class="tab-container service"><image class="status-icon" src="/images/order-status/service.png" mode="aspectFit"></image><text class="tab-label">售后</text></view></view>
+    </view>
+  </view>
+  <view class="logout-section" wx:if="{{isLoggedIn}}">
+    <button class="logout-button" bindtap="logout">退出登录</button>
+  </view>
+  <view class="recommend-section" wx:if="{{isLoggedIn && recommendedBooks.length}}">
+    <view class="recommend-heading"><view class="recommend-title-group"><text class="section-title">为你推荐</text><view class="recommend-sprig"><view class="recommend-leaf leaf-one"></view><view class="recommend-leaf leaf-two"></view></view></view><text class="recommend-badge">课程偏好</text></view>
+    <text class="recommend-subtitle">根据课程关注与校园热门教材，为你优选</text>
+    <view class="recommend-list">
+      <view class="recommend-card" wx:for="{{recommendedBooks}}" wx:key="id" bindtap="openRecommendation" data-id="{{item.id}}">
+        <image class="recommend-cover" src="{{item.coverUrl}}" mode="aspectFit"></image>
+        <text class="recommend-book-title">{{item.title}}</text>
+        <text class="recommend-meta">{{item.recommendationReason}}</text>
+        <text class="recommend-price">¥{{item.price}}</text>
+      </view>
+    </view>
+  </view>
+</view>

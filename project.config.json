@@ -1,0 +1,82 @@
+{
+  "compileType": "miniprogram",
+  "libVersion": "3.8.3",
+  "packOptions": {
+    "ignore": [
+      {
+        "value": "images/用户.png",
+        "type": "file"
+      },
+      {
+        "value": "images/深入浅出nodejs.jpg",
+        "type": "file"
+      },
+      {
+        "value": "images/你不知道的JavaScript（上卷）精装版.jpg",
+        "type": "file"
+      },
+      {
+        "value": "images/小程序开发实战.jpg",
+        "type": "file"
+      },
+      {
+        "value": "images/操作系统概念.jpg",
+        "type": "file"
+      },
+      {
+        "value": "images/现代操作系统.jpg",
+        "type": "file"
+      },
+      {
+        "value": "images/深入浅出nodejs2.jpg",
+        "type": "file"
+      },
+      {
+        "value": "images/云原生架构：原理与实践.jpg",
+        "type": "file"
+      },
+      {
+        "value": "images/编译原理.jpg",
+        "type": "file"
+      }
+    ],
+    "include": []
+  },
+  "setting": {
+    "coverView": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "enhance": true,
+    "showShadowRootInWxmlPanel": true,
+    "packNpmRelationList": [],
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "compileWorklet": false,
+    "uglifyFileName": false,
+    "uploadWithSourceMap": true,
+    "packNpmManually": false,
+    "minifyWXSS": true,
+    "minifyWXML": true,
+    "localPlugins": false,
+    "condition": false,
+    "swc": false,
+    "disableSWC": true,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false,
+    "urlCheck": false
+  },
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "auto",
+    "tabSize": 2
+  },
+  "projectname": "hzau-bookcycle-mp",
+  "appid": "wxe28eaafbbc6fa691",
+  "simulatorPluginLibVersion": {},
+  "cloudfunctionRoot": "cloudfunctions/",
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
+}

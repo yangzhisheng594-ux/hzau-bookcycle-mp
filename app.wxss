@@ -1,0 +1,106 @@
+/** 全局基础样式。页面布局由各自的 wxss 控制，避免影响所有 .container。 */
+page {
+  background: #f6f5f2;
+  color: #2c463b;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+button::after {
+  border: 0;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-weight: 600;
+  line-height: 1.2 !important;
+  text-align: center;
+}
+
+page .page-nav-title,
+page .nav-title {
+  display: block;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* 自定义导航页统一预留安全区，避免标题与系统状态栏重叠。
+   用 safe-area 变量而不是写死像素：写死会在刘海屏上留下多余空白。
+   不支持 env() 的老基础库下退化为 100rpx（约等于常见状态栏高度）。 */
+page .page-nav,
+page .detail-nav {
+  height: calc(104rpx + env(safe-area-inset-top)) !important;
+  padding-top: env(safe-area-inset-top) !important;
+  box-sizing: border-box;
+}
+
+page .nav-back {
+  top: calc(26rpx + env(safe-area-inset-top)) !important;
+}
+
+/* 二级页面统一视觉规范：标题、操作按钮和空状态保持同一套节奏。 */
+page .page-nav-title,
+page .nav-title,
+page .header .title {
+  color: #2f6b57;
+  font-size: 31rpx;
+  font-weight: 750;
+  letter-spacing: .8rpx;
+}
+
+page .nav-back {
+  line-height: 1 !important;
+}
+
+page .publish-button,
+page .submit-button,
+page .save-btn,
+page .pay-button,
+page .checkout-btn,
+page .empty-btn,
+page .order-actions button,
+page .actions button,
+page .action-button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  text-align: center;
+}
+
+page .manage-button,
+page .respond-button,
+page .share-button,
+page .manage-btn,
+page .profile-action {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1.2 !important;
+  text-align: center;
+}
+
+page .empty-cart,
+page .empty-orders,
+page .empty-list,
+page .empty,
+page .loading-state,
+page .loading-placeholder,
+page .status {
+  box-sizing: border-box;
+  color: #8b9f91;
+  line-height: 1.55;
+  text-align: center;
+}
+
+page .empty-cart,
+page .empty-orders,
+page .empty-list,
+page .empty {
+  border: 1rpx dashed #d8e7da;
+  border-radius: 22rpx;
+  background: rgba(255, 255, 255, .62);
+}

@@ -1,0 +1,188 @@
+<view class="container">
+  <view class="page-nav"><text class="page-nav-title">华农书循环</text></view>
+
+  <!-- 运营位轮播：后台可配置标题/副标题/图片/链接/启停/排序；
+       「购买说明」作为最后一页跟运营位一起轮播（不是贴在下面的说明条） -->
+  <view class="home-hero banner-carousel" bindtap="onHeroClick">
+    <view class="banner-track" style="transform: translateX(-{{bannerIndex * 100}}%)">
+      <view class="banner-slide" wx:for="{{slides}}" wx:key="id">
+        <block wx:if="{{item.kind === 'guide'}}">
+          <image class="hero-illustration" src="/images/hero-book-leaf-optimized.png" mode="aspectFit"></image>
+          <view class="hero-eyebrow">HOW TO BUY</view>
+          <view class="hero-content">
+            <view>
+              <view class="hero-title"><text>购买说明</text></view>
+              <view class="hero-subtitle">确认购买不扣款 · 锁单防抢 · 线下交付 ›</view>
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <image class="banner-image" wx:if="{{item.imageUrl}}" src="{{item.imageUrl}}" mode="aspectFill"></image>
+          <image class="hero-illustration" wx:else src="/images/hero-book-leaf-optimized.png" mode="aspectFit"></image>
+          <view class="hero-eyebrow">HZAU BOOK CIRCULATION</view>
+          <view class="hero-content">
+            <view>
+              <view class="hero-title"><text>{{item.title}}</text></view>
+              <view class="hero-subtitle">{{item.subtitle || '狮子山下 · 校内流转 · 书友相遇'}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="banner-dots" wx:if="{{slides.length > 1}}" catchtap="noop">
+      <text class="banner-dot {{index === bannerIndex ? 'active' : ''}}"
+            wx:for="{{slides}}" wx:key="id" data-index="{{index}}" catchtap="setBannerIndex"></text>
+    </view>
+  </view>
+
+  <!-- 核心三入口：卖书 / 买书 / 求购 -->
+  <view class="entry-grid">
+    <view class="entry-item entry-sell" bindtap="goPublish">
+      <text class="entry-icon">📚</text>
+      <text class="entry-label">我要卖书</text>
+      <text class="entry-desc">拍照识别 极速上架</text>
+    </view>
+    <view class="entry-item entry-buy" bindtap="scrollToBrowse">
+      <text class="entry-icon">🔍</text>
+      <text class="entry-label">我要买书</text>
+      <text class="entry-desc">校内教材 即买即得</text>
+    </view>
+    <view class="entry-item entry-want" bindtap="goPublishRequest">
+      <text class="entry-icon">📝</text>
+      <text class="entry-label">我要求购</text>
+      <text class="entry-desc">发布需求 等书上门</text>
+    </view>
+  </view>
+
+  <!-- 购买说明弹窗 -->
+  <view class="guide-modal-mask" wx:if="{{showBuyGuide}}" bindtap="closeBuyGuide">
+    <view class="guide-modal" catchtap="noop">
+      <view class="guide-modal-title">华农书循环购买说明</view>
+      <view class="guide-steps">
+        <view class="guide-step" wx:for="{{buyGuideSteps}}" wx:key="*this">
+          <text class="guide-step-num">{{index + 1}}</text>
+          <text class="guide-step-text">{{item}}</text>
+        </view>
+      </view>
+      <view class="guide-notes">
+        <view class="guide-note">· 确认购买不会立即扣款，只是锁定该教材</view>
+        <view class="guide-note">· 锁定后其他同学暂时无法购买，避免争抢</view>
+        <view class="guide-note">· 订单取消或超时，商品自动恢复可购买</view>
+      </view>
+      <button class="guide-close" bindtap="closeBuyGuide">我知道了</button>
+    </view>
+  </view>
+
+  <view class="search-section-wrapper">
+    <view class="search-section">
+      <input class="search-input" value="{{keyword}}" bindinput="handleKeywordInput" bindconfirm="submitSearch"
+             confirm-type="search" placeholder="书名、作者、课程编号" placeholder-class="input-placeholder" />
+      <view class="search-button" bindtap="submitSearch">
+        <image class="search-icon" src="/images/search-magnifier-illustrated.png" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="quick-grid">
+    <view class="quick-item"><image class="quick-illustration" src="/images/search-book-illustrated.png" mode="aspectFit"></image><text class="quick-label">专业找书</text></view>
+    <view class="quick-item"><image class="quick-illustration" src="/images/tabbar/sell_illustrated_selected.png" mode="aspectFit"></image><text class="quick-label">闲置转让</text></view>
+    <view class="quick-item"><image class="quick-illustration" src="/images/order-status/handoff.png" mode="aspectFit"></image><text class="quick-label">校内面交</text></view>
+  </view>
+
+  <!-- 专业年级荐书：华农本土化核心检索维度 -->
+  <view class="course-match-card">
+    <view class="match-heading-row">
+      <view class="match-title-group"><view class="match-title">专业年级荐书</view><view class="match-leaf"><view class="match-leaf-one"></view><view class="match-leaf-two"></view></view></view>
+      <view class="match-badge">专业 + 年级 · 精准荐书</view>
+    </view>
+    <view class="match-description">选好你的专业和年级，优先推荐同专业、同年级正在流转的教材。</view>
+    <view class="match-controls">
+      <picker class="course-picker" mode="selector" range="{{majorLabels}}" value="{{selectedMajorIndex}}" bindchange="handleMajorChange">
+        <view class="course-picker-inner">
+          <text class="picker-prefix">专业</text>
+          <text class="picker-value">{{majorLabels[selectedMajorIndex] || '专业不限'}}</text>
+          <text class="picker-arrow">⌄</text>
+        </view>
+      </picker>
+      <view class="match-control-gap"></view>
+      <picker class="course-picker" mode="selector" range="{{gradeLabels}}" value="{{selectedGradeIndex}}" bindchange="handleGradeChange">
+        <view class="course-picker-inner">
+          <text class="picker-prefix">年级</text>
+          <text class="picker-value">{{gradeLabels[selectedGradeIndex] || '年级不限'}}</text>
+          <text class="picker-arrow">⌄</text>
+        </view>
+      </picker>
+    </view>
+    <view class="match-actions">
+      <button class="match-button" loading="{{isMatching}}" bindtap="runRecommend">{{isMatching ? '推荐中…' : '智能荐书'}}</button>
+    </view>
+    <view class="match-result" wx:if="{{hasRecommended}}">
+      <view class="match-result-caption"><text class="result-dot"></text><text>{{matchMessage}}</text></view>
+      <view class="match-book-list" wx:if="{{matchBooks.length > 0}}">
+        <view class="match-book" wx:for="{{matchBooks}}" wx:key="id" bindtap="navigateToBookDetail" data-id="{{item.id}}">
+          <image class="match-cover" src="{{item.coverUrl}}" mode="aspectFill"></image>
+          <view class="match-book-copy">
+            <text class="match-book-title">{{item.title}}</text>
+            <text class="match-book-meta">{{item.metaText}}</text>
+          </view>
+          <text class="match-book-price">¥{{item.price}}</text>
+        </view>
+      </view>
+      <view class="course-request-panel" wx:if="{{matchRequests.length > 0}}">
+        <view class="course-request-heading">
+          <view class="request-heading-left"><text class="request-pulse"></text><text>同专业同学正在求购</text></view>
+          <text class="request-heading-note">同门互助</text>
+        </view>
+        <view class="course-request-item" wx:for="{{matchRequests}}" wx:key="id">
+          <view class="request-symbol">求</view>
+          <view class="request-copy">
+            <text class="request-title">{{item.title}}</text>
+            <text class="request-meta">{{item.metaText}}</text>
+          </view>
+          <view class="request-respond" bindtap="respondToRequest" data-id="{{item.id}}">我有此书</view>
+        </view>
+      </view>
+      <view class="match-empty" wx:if="{{matchBooks.length === 0 && !isMatching}}">暂时没有匹配的在售教材，换个专业或年级看看？</view>
+    </view>
+  </view>
+
+  <view id="homeBrowseSection" class="section best-sellers-section">
+    <view class="section-heading">
+      <view class="section-title-cluster"><view class="section-title">本周热选</view><view class="section-leaf-sprig"><view class="sprig-leaf leaf-one"></view><view class="sprig-leaf leaf-two"></view><view class="sprig-leaf leaf-three"></view></view></view>
+      <view class="section-more section-more-link" bindtap="goToCollection" data-collection="hot">热门教材  ›</view>
+    </view>
+    <scroll-view class="scroll-view-horizontal" scroll-x="true">
+      <view class="scroll-item-wrapper" wx:for="{{bestsellers}}" wx:key="id" bindtap="navigateToBookDetail" data-id="{{item.id}}">
+        <view class="book-card-horizontal">
+          <image class="book-cover-horizontal" src="{{item.coverUrl}}" mode="aspectFill"></image>
+          <view class="book-title-horizontal">{{item.title}}</view>
+          <view class="book-code-horizontal">{{item.metaLine}}</view>
+          <view class="book-price-horizontal">¥{{item.price}}</view>
+        </view>
+      </view>
+      <view class="empty-inline" wx:if="{{!isLoading && bestsellers.length === 0}}">暂无热门书籍</view>
+    </scroll-view>
+  </view>
+
+  <view class="section recent-releases-section">
+    <view class="section-heading">
+      <view class="section-title-cluster"><view class="section-title">新书上架</view><view class="section-leaf-sprig"><view class="sprig-leaf leaf-one"></view><view class="sprig-leaf leaf-two"></view><view class="sprig-leaf leaf-three"></view></view></view>
+      <view class="section-more section-more-link" bindtap="goToCollection" data-collection="recent">发现好书  ›</view>
+    </view>
+    <view class="release-list">
+      <view class="release-item" wx:for="{{recentReleases}}" wx:key="id" bindtap="navigateToBookDetail" data-id="{{item.id}}">
+        <image class="release-cover" src="{{item.coverUrl}}" mode="aspectFill"></image>
+        <view class="release-info">
+          <view class="release-title">{{item.title}}</view>
+          <view class="release-code">{{item.metaLine}}</view>
+          <view class="release-price-line"><text class="current-price">¥{{item.price}}</text></view>
+        </view>
+      </view>
+      <view class="empty-state" wx:if="{{!isLoading && recentReleases.length === 0 && !loadFailed}}">暂时没有在售书籍</view>
+      <view class="empty-state retry-state" wx:if="{{loadFailed}}" bindtap="retryLoad">
+        <view>加载失败，点击重试</view>
+        <view class="load-error-detail" wx:if="{{loadError}}">{{loadError}}</view>
+      </view>
+    </view>
+  </view>
+</view>

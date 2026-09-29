@@ -1,0 +1,14 @@
+<view class="container">
+  <view class="page-nav"><view class="nav-back" bindtap="goBack">‹</view><text class="nav-title">确认订单</text></view>
+  <view class="section product-info-section">
+    <view class="section-heading"><view class="section-title">本次购买</view><text class="section-tip">校内面交</text></view>
+    <view class="order-item" wx:for="{{orderItems}}" wx:key="cartItemId" wx:for-item="item">
+      <image class="item-cover" src="{{item.coverUrl || ''}}" mode="aspectFill" wx:if="{{item.coverUrl}}"></image>
+      <view class="item-cover placeholder-block" wx:else></view>
+      <view class="item-details"><view class="item-title">{{item.title}}</view><view class="item-code">{{item.courseCode || item.spec || '课程教材'}}</view><view class="item-quantity" wx:if="{{item.quantity && item.quantity > 1}}">数量 × {{item.quantity}}</view></view>
+      <view class="item-price" wx:if="{{item.displayPrice !== undefined}}">¥{{item.displayPrice}}</view><view class="item-price" wx:else>¥0.00</view>
+    </view>
+  </view>
+  <view class="trade-note"><view class="trade-note-title">校内面交提醒</view><text>支付后请与卖家约定校内面交时间；当面验书无误后，再确认收书完成交易。</text></view>
+  <view class="bottom-checkout-bar"><view class="total-amount-display"><text>合计</text><text class="amount-value">¥{{totalOrderPrice}}</text></view><button class="pay-button" bindtap="handlePayment" loading="{{isPaying}}" disabled="{{isPaying || isLoading || errorLoading}}">{{isPaying ? '处理中' : '确认支付'}}</button></view>
+</view>

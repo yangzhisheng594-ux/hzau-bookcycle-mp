@@ -1,0 +1,108 @@
+<!--pages/bookDetail/bookDetail.wxml-->
+<view class="container">
+  <view class="detail-nav"><view class="nav-back" bindtap="goBack">‹</view><text class="nav-title">图书详情</text></view>
+  <!-- 顶部图片和基本信息区域 -->
+  <view class="book-main-info-section">
+    <!-- 图片区域 -->
+    <view class="image-container">
+      <!-- 优先使用 imageUrls 进行轮播 -->
+      <swiper class="image-swiper" indicator-dots="true" autoplay="false" circular="true" current="{{currentSwiper}}" bindchange="swiperChange" wx:if="{{book.imageUrls && book.imageUrls.length > 0}}">
+        <block wx:for="{{book.imageUrls}}" wx:key="*this" wx:for-item="imageUrl">
+          <swiper-item>
+            <image src="{{imageUrl}}" class="slide-image" mode="aspectFit" wx:if="{{imageUrl}}"/>
+            <view class="image-placeholder-block" wx:else></view> <!-- CSS 占位 -->
+          </swiper-item>
+        </block>
+      </swiper>
+      <!-- 如果 imageUrls 为空或不存在，但 book.coverUrl 存在，则显示单张封面图 -->
+      <image src="{{book.coverUrl}}" class="slide-image" mode="aspectFit" wx:elif="{{book.coverUrl}}"/>
+      <!-- 如果两者都没有，则显示一个 CSS 占位块 -->
+      <view class="image-placeholder-block" wx:else></view>
+
+      <view class="image-count" wx:if="{{book.imageUrls && book.imageUrls.length > 1}}">
+        <text>{{currentSwiper + 1}}</text>/{{book.imageUrls.length}}
+      </view>
+    </view>
+
+    <!-- 价格、书名、作者、代码、分享区域 -->
+    <view class="meta-info">
+      <view class="price-line">
+        <text class="current-price">¥{{book.price || 'N/A'}}</text>
+        <text class="original-price" wx:if="{{book.originalPrice && book.originalPrice !== book.price && book.originalPrice > 0}}">¥{{book.originalPrice}}</text>
+      </view>
+      <view class="title-author">
+        {{book.title || '书籍标题加载中...'}}
+        <text wx:if="{{book.author}}" class="author-name"> / {{book.author}}</text>
+      </view>
+      <view class="book-tags">
+        <text class="course-tag">{{book.courseCode || '课程教材'}}</text>
+        <text class="condition-tag" wx:if="{{book.condition}}">{{book.condition}}</text>
+      </view>
+      <view class="code-share-line">
+        <text class="course-code">支持校内面交 · 当面验书</text>
+        <!-- 使用 button 实现分享 -->
+        <button open-type="share" class="share-button" plain="true">
+          <text>分享</text>
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 其他信息区域 (品相、出版社等) -->
+  <view class="book-extra-info-section" wx:if="{{book.condition || book.publisher || book.publishDate || book.isbn || book.views > 0}}">
+    <view class="section-title-detail">其他信息</view>
+    <view class="extra-info-grid">
+      <view class="extra-info-item" wx:if="{{book.condition}}">
+        <text class="extra-info-label">品相:</text>
+        <text class="extra-info-value">{{book.condition}}</text>
+      </view>
+      <view class="extra-info-item" wx:if="{{book.publisher}}">
+        <text class="extra-info-label">出版社:</text>
+        <text class="extra-info-value">{{book.publisher}}</text>
+      </view>
+      <view class="extra-info-item" wx:if="{{book.publishDate}}">
+        <text class="extra-info-label">出版日期:</text>
+        <text class="extra-info-value">{{book.publishDate}}</text>
+      </view>
+      <view class="extra-info-item" wx:if="{{book.isbn}}">
+        <text class="extra-info-label">ISBN:</text>
+        <text class="extra-info-value">{{book.isbn}}</text>
+      </view>
+      <view class="extra-info-item" wx:if="{{book.views > 0}}">
+        <text class="extra-info-label">浏览量:</text>
+        <text class="extra-info-value">{{book.views}}</text>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- 卖家信息区域 -->
+  <view class="seller-info-section" wx:if="{{book.sellerInfo}}">
+    <view class="section-title-detail">卖家信息</view>
+    <view class="seller-card">
+      <image class="seller-avatar" src="{{book.sellerInfo.avatarUrl}}" mode="aspectFill" wx:if="{{book.sellerInfo.avatarUrl}}"></image>
+      <view class="avatar-placeholder-block" wx:else></view>
+      <view class="seller-details">
+        <view class="seller-name">{{book.sellerInfo.nickName || '匿名卖家'}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 书籍详情内容区域 -->
+  <view class="book-content-section content-below-main"> <!-- 给这个区域加个类名，方便单独加margin-top -->
+    <view class="section-title-detail">书籍详情</view>
+    <view class="content-text">
+      {{book.description || '暂无详细介绍。'}}
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-actions">
+    <view class="action-button add-to-cart-button" bindtap="addToCart">
+      加入购物车
+    </view>
+    <view class="action-button buy-now-button" bindtap="buyNow">
+      立即购买
+    </view>
+  </view>
+</view>

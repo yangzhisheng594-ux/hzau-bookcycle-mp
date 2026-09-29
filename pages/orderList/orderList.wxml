@@ -1,0 +1,18 @@
+<view class="page-container">
+  <view class="page-nav"><view class="nav-back" bindtap="goBack">‹</view><text class="nav-title">我的订单</text></view>
+  <view class="order-list" wx:if="{{orders.length > 0}}">
+    <view class="order-card" wx:for="{{orders}}" wx:key="orderId">
+      <view class="order-header"><text class="order-id">订单 {{item.orderNumber}}</text><text class="order-status {{item.statusClass}}">{{item.statusText}}</text></view>
+      <view class="product-item" wx:for="{{item.products}}" wx:for-item="product" wx:key="productId">
+        <image class="product-cover" wx:if="{{product.coverUrl}}" src="{{product.coverUrl}}" mode="aspectFill"></image><view class="product-cover product-cover-placeholder" wx:else>暂无封面</view>
+        <view class="product-info"><view class="product-title">{{product.title}}</view><view class="product-specs">{{product.courseCode || '课程教材'}} · ×{{product.quantity}}</view></view><view class="product-price">¥{{product.displayPrice}}</view>
+      </view>
+      <view class="order-summary"><text>共 {{item.totalQuantity}} 件</text><text class="total-amount">¥{{item.displayTotalAmount}}</text></view>
+      <view class="handover-note" wx:if="{{item.status === 'pendingShipment'}}"><text class="handover-mark">约</text><text>教材已锁定，请与卖家约定校内面交时间</text></view>
+      <view class="handover-note received" wx:if="{{item.status === 'pendingReceipt'}}"><text class="handover-mark">验</text><text>卖家已确认面交，请验书后确认收书</text></view>
+      <view class="order-actions"><button wx:if="{{item.status === 'pendingReceipt'}}" bindtap="confirmReceipt" data-id="{{item.orderId}}">确认收书</button></view>
+    </view>
+  </view>
+  <view class="empty-orders" wx:elif="{{!isLoading && !loadFailed}}"><view class="empty-icon">订单</view><text class="empty-text">暂无相关订单</text><button class="empty-btn" bindtap="goToHome">去逛逛</button></view>
+  <view class="loading-state" wx:if="{{isLoading}}">正在加载订单…</view><view class="loading-state retry" wx:if="{{loadFailed}}" bindtap="retryLoad">加载失败，点击重试</view><view class="loading-state more" wx:if="{{hasMore && !isLoading}}" bindtap="loadMore">加载更多</view>
+</view>
